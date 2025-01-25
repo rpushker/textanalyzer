@@ -14,6 +14,9 @@ returned.}
 
 \item{plot_nrows}{a numeric vector of length 1. Number of rows to be plotted.}
 }
+\value{
+A ggplot plot object of bar chart with words and their counts.
+}
 \description{
 Plot ngrams - Word(s) vs. Count.
 }

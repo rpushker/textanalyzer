@@ -6,9 +6,10 @@
 #' @param ngram a numeric_vector of length 1. Ngram = 1, 2 or 3.
 #' @param top_rows a numeric vector of length 1. Number of top rows to be
 #' returned.
+#' @return A data.frame with two columns - word/bigram/trigram (character
+#'  vector) and count (integer vector).
 #' @examples
-#' analyze_ngrams(in_text=c("How much wood would a woodchuck chuck if a
-#' woodchuck could chuck wood?"))
+#' analyze_ngrams(in_text=c("The quick brown fox jumps over the lazy dog."))
 #' @export
 analyze_ngrams <- function(in_text, ngram = 1, top_rows = 25) {
   if (!(is.character(in_text) || is.factor(in_text))) {
@@ -33,9 +34,10 @@ analyze_ngrams <- function(in_text, ngram = 1, top_rows = 25) {
 #' @param in_text a character vector. Text to be analyzed as a character vector.
 #' @param top_rows a numeric vector of length 1. Number of top rows to be
 #' returned.
+#' @return A data.frame with two columns - word (character vector) and count
+#' (numeric vector).
 #' @examples
-#' analyze_tokens(in_text=c("How much wood would a woodchuck chuck if a
-#' woodchuck could chuck wood?"))
+#' analyze_tokens(in_text=c("The quick brown fox jumps over the lazy dog."))
 #' @import tidytext
 #' @import dplyr
 #' @export
@@ -69,9 +71,10 @@ analyze_tokens <- function(in_text, top_rows = 25) {
 #' @param in_text a character vector. Text to be analyzed as a character vector.
 #' @param top_rows a numeric vector of length 1. Number of top rows to be
 #' returned.
+#' @return A data.frame with two columns - bigram (character vector) and count
+#' (numeric vector).
 #' @examples
-#' analyze_bigrams(in_text=c("How much wood would a woodchuck chuck if a
-#' woodchuck could chuck wood?"))
+#' analyze_bigrams(in_text=c("The quick brown fox jumps over the lazy dog."))
 #' @import tidytext
 #' @import tidyr
 #' @import dplyr
@@ -104,7 +107,7 @@ analyze_bigrams <- function(in_text, top_rows = 25) {
   bigrams_united <- bigram_counts %>%
     tidyr::unite(bigram, word1, word2, sep = " ") %>%
     dplyr::top_n(n = top_rows, wt = n) %>%
-    dplyr::mutate(word = stats::reorder(bigram, n))
+    dplyr::mutate(bigram = stats::reorder(bigram, n))
 
   bigrams_united
 }
@@ -116,12 +119,13 @@ analyze_bigrams <- function(in_text, top_rows = 25) {
 #' @param in_text a character vector. Text to be analyzed as a character vector.
 #' @param top_rows a numeric vector of length 1. Number of top rows to be
 #' returned.
+#' @return A data.frame with two columns - trigram (character vector) and count
+#' (numeric vector).
 #' @import tidytext
 #' @import tidyr
 #' @import dplyr
 #' @examples
-#' analyze_trigrams(in_text=c("How much wood would a woodchuck chuck if a
-#' woodchuck could chuck wood?"))
+#' analyze_trigrams(in_text=c("The quick brown fox jumps over the lazy dog."))
 #' @export
 analyze_trigrams <- function(in_text, top_rows = 25) {
   trigram <- word1 <- word2 <- word3 <- NULL
@@ -152,7 +156,7 @@ analyze_trigrams <- function(in_text, top_rows = 25) {
   trigrams_united <- trigram_counts %>%
     tidyr::unite(trigram, word1, word2, word3, sep = " ") %>%
     dplyr::top_n(n = top_rows, wt = n) %>%
-    dplyr::mutate(word = stats::reorder(trigram, n))
+    dplyr::mutate(trigram = stats::reorder(trigram, n))
 
   trigrams_united
 }
@@ -165,18 +169,18 @@ analyze_trigrams <- function(in_text, top_rows = 25) {
 #' @param top_rows a numeric vector of length 1. Number of top rows to be
 #' returned.
 #' @param plot_nrows a numeric vector of length 1. Number of rows to be plotted.
+#' @return A ggplot plot object of bar chart with words and their counts.
 #' @examples
 #' plot_ngrams(data.frame(word=c("test1", "test2"), n=c(25, 30)))
 #' @import ggplot2
 #' @import utils
 #' @export
 plot_ngrams <- function(ngrams_data, top_rows = 25, plot_nrows = 25) {
-  word <- NULL
 
   ngrams_data %>%
     dplyr::top_n(n = top_rows, wt = n) %>%
     utils::head(plot_nrows) %>%
-    ggplot(aes(word, n)) +
+    ggplot(aes(x = .data[[names(ngrams_data)[1]]], n)) +
     geom_col() +
     ylab("Count") +
     xlab("Word") +

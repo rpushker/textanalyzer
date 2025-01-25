@@ -12,6 +12,10 @@ analyze_tokens(in_text, top_rows = 25)
 \item{top_rows}{a numeric vector of length 1. Number of top rows to be
 returned.}
 }
+\value{
+A data.frame with two columns - word (character vector) and count
+(numeric vector).
+}
 \description{
 Analyze text with ngram=1
 }
@@ -19,8 +23,7 @@ Analyze text with ngram=1
 analyze_tokens
 }
 \examples{
-analyze_tokens(in_text=c("How much wood would a woodchuck chuck if a
-woodchuck could chuck wood?"))
+analyze_tokens(in_text=c("The quick brown fox jumps over the lazy dog."))
 }
 \author{
 Ravindra Pushker

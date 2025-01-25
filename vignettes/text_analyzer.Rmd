@@ -46,7 +46,7 @@ head(tokens)
 ```
 
 ```{r echo=FALSE}
-kable(tokens[1:6,])
+kable(head(tokens))
 ```
 
 ```{r}

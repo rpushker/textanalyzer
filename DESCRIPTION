@@ -1,13 +1,12 @@
 Package: textanalyzer
 Type: Package
-Title: TextAnalyzeR, an R Package to Analyze Text
-Version: 0.2
+Title: 'textanalyzer', an R Package to Analyze Text
+Version: 0.2.0
 Authors@R: person(given = "Pushker",
                       family = "Ravindra",
                       role = c("aut", "cre"),
                       email = "pushker@gmail.com")
-Maintainer: Pushker Ravindra <pushker@gmail.com>
-Description: Analyze text to create count of top ngrams. 
+Description: It analyzes text to create a count of top n-grams, including tokens (one-word), bigrams(two-word), and trigrams (three-word), while removing all stopwords. It also plots the n-grams and corresponding counts as a bar chart.
 License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.3.2

@@ -14,6 +14,10 @@ analyze_ngrams(in_text, ngram = 1, top_rows = 25)
 \item{top_rows}{a numeric vector of length 1. Number of top rows to be
 returned.}
 }
+\value{
+A data.frame with two columns - word/bigram/trigram (character
+ vector) and count (integer vector).
+}
 \description{
 Analyze text with ngram among 1, 2 or 3.
 }
@@ -21,8 +25,7 @@ Analyze text with ngram among 1, 2 or 3.
 analyze_ngrams
 }
 \examples{
-analyze_ngrams(in_text=c("How much wood would a woodchuck chuck if a
-woodchuck could chuck wood?"))
+analyze_ngrams(in_text=c("The quick brown fox jumps over the lazy dog."))
 }
 \author{
 Ravindra Pushker
