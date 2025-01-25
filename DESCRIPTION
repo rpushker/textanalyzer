@@ -1,12 +1,20 @@
 Package: textanalyzer
 Type: Package
-Title: TextAnalyzeR, an R package to analyze text
-Version: 0.1.3
-Author: Ravindra Pushker
-Maintainer: Ravindra Pushker <ravindra.pushker@bayer.com>
-Description: Analyze text to create count of top ngrams including tokens, bigrams, trigrams. 
-License: GPL
+Title: TextAnalyzeR, an R Package to Analyze Text
+Version: 0.2
+Authors@R: person(given = "Pushker",
+                      family = "Ravindra",
+                      role = c("aut", "cre"),
+                      email = "pushker@gmail.com")
+Maintainer: Pushker Ravindra <pushker@gmail.com>
+Description: Analyze text to create count of top ngrams. 
+License: GPL-3
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 6.1.1
-Depends: tidytext, tidyr, dplyr, ggplot2
+RoxygenNote: 7.3.2
+Depends: tidytext, tidyr, dplyr, ggplot2, utils, stats
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
